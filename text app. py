@@ -1,0 +1,29 @@
+python
+import joblib
+impirt numpy as np
+import streamlist as st
+model = joblib.load("house_price_model.pkl")
+scaler = joblib.load("scaler.pkl")
+st. title("House price prediction App")
+med_inc = st.number_input("Median Income:", value=3.0)
+house_age = st.number_input("House Age:", value=20.0)
+ave_rooms= st.number_input("Average Rooms:", value=5.0)
+ave_bedrms = st.number_input(Average Bedrooms:", value=1.0)
+population = st.number_input(population:" value=500.0)
+ave_occup=st.number_input("Average Occupancy:", value=3.0)
+latitude = st.number_input("Latitude:", value=34.0)
+longitude = st.number_input ("Longitude:", value=118.0)
+if st.button("predict price"):
+input_data = np.array([[
+med_inc,
+house_age,
+ave_ rooms,
+ave_bedrms,
+population,
+ave_occup,
+latitude,
+longitude,
+]])
+input_scaled = scaler.transform(input_data)
+prediction = model.predict(input_scaled)
+st.success(f"Estimated price: ${prediction[0]*100000:,.2f}")
